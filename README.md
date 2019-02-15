@@ -27,13 +27,26 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
-- [ ] Describe Middleware?
+Express is basically backend what React is to frontend. It is primarily used to build RESTful web services that work with JSON.
+
+
+- [ ] Describe Middleware
+
+Middleware are function that get the request and response objects, and can do operations on them before moving them along in the pipeline. One example would be like Morgan middleware, which logs every event that happens.
+
 
 - [ ] Describe a Resource?
 
+Everything is a resource. Basically, it is just anything that you are pulling or using in your application in anyway.
+
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+The API can return a successfull HTTP request message, like a 200 request.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can partition our application into sub-applications through routing. This way, we can have folders for all of our different routes so that our main server.js file does not get overwhelmed with tons of routes. This makes things modular and easy to update or maintain.
 
 ## Project Setup
 
