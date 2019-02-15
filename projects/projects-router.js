@@ -80,6 +80,23 @@ router.delete('/:id', async (req, res) => {
   
 });
 
+//EDIT 
+router.put('/:id', async (req, res) => {
+  if (!req.body) {
+    return res.status(400).json({ error: "Please provide a name, description, or completed status to update."})
+  }
+  try {
+    const edited = await Projects.update(req.params.id, req.body);
+    if (edited) {
+      return res.status(200).json(edited);
+    } else {
+      res.status(404).json({ error: "The project with the specified ID does not exist."});
+    }
+  } catch (error) {
+    res.status(500).json({ error: "We could not update the project at this time."})
+  }
+});
+
 
 
 module.exports = router;
