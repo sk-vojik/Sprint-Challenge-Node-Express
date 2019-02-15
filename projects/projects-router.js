@@ -44,6 +44,42 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+//POST
+
+router.post('/', async (req, res) => {
+  const splitName = req.body.name.split('');
+  if(!req.body.name || !req.body.description || req.body.completed === null) {
+    return res.status(400).json({ error: "Please provide a name, description and completed status"})
+  } else if (splitName.length > 128) {
+    res.status(400).json({ error: "Name cannot be larger than 128 characters loing"})
+  }
+  try {
+    console.log(req);
+    const project = await Projects.insert(req.body);
+    res.status(201).json({ success: true, project });
+  } catch (error) {
+    res.status(500).json({ error: 'We could not post the project at this time.'})
+  }
+  
+});
+
+
+//DELETE
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const deleted = await Projects.remove(req.params.id);
+    if (deleted) {
+      return res.status(200).json(deleted);
+    } else {
+      res.status(404).json({ error: "The project with this ID does not exist."})
+    }
+  } catch (error) {
+    res.status(500).json({ error: "We were unable to delete the project at this time."})
+  }
+  
+});
+
 
 
 module.exports = router;
